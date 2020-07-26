@@ -39,9 +39,9 @@ The folder *results* contains the results for *EvoGFUZZ* and the *Baseline* show
 ## Complete Evaluation Reproduction
 
 In order to replicate our results we provide a run script for each target language:
-	* [runAllJson.sh](./evogfuzz/01_json/runAllJson.sh)
-	* [runAllJavaScript.sh](./evogfuzz/02_javaScript/runAllJavaScript.sh)
-	* [runAllCss3.sh] (./evogfuzz/03_css/runAllCss3.sh)
+* [runAllJson.sh](./evogfuzz/01_json/runAllJson.sh)
+* [runAllJavaScript.sh](./evogfuzz/02_javaScript/runAllJavaScript.sh)
+* [runAllCss3.sh](./evogfuzz/03_css/runAllCss3.sh)
 
 In the beginning of each run script you can define the experiment parameters:
 * `subjects`: `S`, the subjects that should be evaluated
