@@ -45,7 +45,7 @@ In order to replicate our results we provide a run script for each target langua
 
 In the beginning of each run script you can define the experiment parameters:
 * `subjects`: `S`, the subjects that should be evaluated
-* `number_of_runs`: `N`, the number of evaluation runs for each subject (30 for all subjects)
+* `number_of_runs`: `N`, the number of evaluation runs for each subject (30 for each subjects)
 * `time_bound`: `T`, the time bound for each evaluation run (600 seconds)
 
 Each run script first executes *EvoGFuzz* before analyzing the triggered *exceptions* and the achieved *code coverage* for each subject and evaluation run.
