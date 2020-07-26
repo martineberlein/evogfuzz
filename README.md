@@ -2,7 +2,7 @@
 This repository provides the tool (*EvoGFuzz*) for the paper *Evolutionary Grammar-Based Fuzzing* accepted at SSBSE'2020.
 
 Authors:
-Martin Eberlein, [Yannic Noller](https://yannicnoller.github.io), [Thomas Vogel](https://thomas-vogel.github.io) and [Lars Grunske](https://www.informatik.hu-berlin.de/de/Members/lars-grunske).
+[Martin Eberlein](martin.eberlein@hu-berlin.de), [Yannic Noller](https://yannicnoller.github.io), [Thomas Vogel](https://thomas-vogel.github.io) and [Lars Grunske](https://www.informatik.hu-berlin.de/de/Members/lars-grunske).
 
 This repository includes: 
 * the scripts to rerun all experiments:
