@@ -1,0 +1,12 @@
+[
+{
+  "name": "java.util.concurrent.TimeoutException",
+  "file": "/home/ubuntu/evo_fuzzing/02_javaScript/./results/Rhino/Iteration-25/run-20/samples/file000077_44_24_18083522389165518995.js",
+  "count": 3
+},
+{
+  "name": "java.lang.IllegalStateException",
+  "file": "/home/ubuntu/evo_fuzzing/02_javaScript/./results/Rhino/Iteration-25/run-25/samples/file000056_28_18_3582935214700471617.js",
+  "count": 1
+}
+]

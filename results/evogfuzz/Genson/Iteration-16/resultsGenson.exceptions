@@ -1,0 +1,7 @@
+[
+{
+  "name": "java.lang.NullPointerException",
+  "file": "/home/ubuntu/evo_fuzzing/01_json/./results/Genson/Iteration-16/run-0/samples/file000001_103_26_14232912754056895908.json",
+  "count": 7263
+}
+]

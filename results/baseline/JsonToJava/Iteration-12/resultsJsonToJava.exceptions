@@ -1,0 +1,17 @@
+[
+{
+  "name": "org.json.JSONException",
+  "file": "/home/ubuntu/inputsFromHell/01_json/./results/JsonToJava/Iteration-12/run-0/samples/file000002_121_29_17948248066250846328.json",
+  "count": 5254
+},
+{
+  "name": "java.lang.ArrayIndexOutOfBoundsException",
+  "file": "/home/ubuntu/inputsFromHell/01_json/./results/JsonToJava/Iteration-12/run-0/samples/file000068_211_27_9758723246133454814.json",
+  "count": 294
+},
+{
+  "name": "java.lang.IllegalArgumentException",
+  "file": "/home/ubuntu/inputsFromHell/01_json/./results/JsonToJava/Iteration-12/run-1/samples/file000009_193_27_18091857639234704604.json",
+  "count": 180
+}
+]

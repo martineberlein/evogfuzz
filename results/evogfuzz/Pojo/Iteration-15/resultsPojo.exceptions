@@ -1,0 +1,12 @@
+[
+{
+  "name": "java.lang.StringIndexOutOfBoundsException",
+  "file": "/home/ubuntu/evo_fuzzing/01_json/./results/Pojo/Iteration-15/run-0/samples/file000001_195_27_8721861513993681141.json",
+  "count": 6682
+},
+{
+  "name": "java.lang.IllegalArgumentException",
+  "file": "/home/ubuntu/evo_fuzzing/01_json/./results/Pojo/Iteration-15/run-1/samples/file000009_144_27_17652602215722954765.json",
+  "count": 119
+}
+]

@@ -1,0 +1,17 @@
+[
+{
+  "name": "org.json.JSONException",
+  "file": "/home/ubuntu/evo_fuzzing/01_json/./results/JsonToJava/Iteration-7/run-0/samples/file000002_263_29_18164166489735913590.json",
+  "count": 5051
+},
+{
+  "name": "java.lang.IllegalArgumentException",
+  "file": "/home/ubuntu/evo_fuzzing/01_json/./results/JsonToJava/Iteration-7/run-0/samples/file000007_220_28_8931385395942588787.json",
+  "count": 159
+},
+{
+  "name": "java.lang.ArrayIndexOutOfBoundsException",
+  "file": "/home/ubuntu/evo_fuzzing/01_json/./results/JsonToJava/Iteration-7/run-10/samples/file000088_81_24_15095478069453786051.json",
+  "count": 74
+}
+]

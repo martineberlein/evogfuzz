@@ -1,0 +1,7 @@
+[
+{
+  "name": "java.util.concurrent.TimeoutException",
+  "file": "/home/ubuntu/evo_fuzzing/02_javaScript/./results/Rhino/Iteration-19/run-16/samples/file000007_62_18_8162441101307180500.js",
+  "count": 2
+}
+]
