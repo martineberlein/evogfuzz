@@ -1,5 +1,5 @@
 # EvoGFuzz: Evolutionary Grammar-Based Fuzzing
-This repository provides the tool (*EvoGFuzz*) for the paper *Evolutionary Grammar-Based Fuzzing* accepted at SSBSE'2020.
+This repository provides the tool (*EvoGFuzz*) for the paper *Evolutionary Grammar-Based Fuzzing* accepted at [SSBSE'2020](http://ssbse2020.di.uniba.it/).
 
 Authors:
 [Martin Eberlein](martin.eberlein@hu-berlin.de), [Yannic Noller](https://yannicnoller.github.io), [Thomas Vogel](https://thomas-vogel.github.io) and [Lars Grunske](https://www.informatik.hu-berlin.de/de/Members/lars-grunske).
@@ -17,7 +17,7 @@ Since the Input Generator is one of the key components of EvoGFuzz the replicati
 
 ## Requirements
 * Git, Build-Essentials
-* Python3.7 , Numpy Package
+* Python3.7, Numpy Package
 * ANTLR parser generator (Version 4.7.1)
 * recommended: Ubuntu 18.04.1 LTS
 
