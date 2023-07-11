@@ -1,3 +1,5 @@
+NOTE: THIS IS AN OUTDATE REPOSITORY, THE CURRENT RELEASE IS AVAILABLE [HERE](https://github.com/martineberlein/evogfuzzplusplus). THIS REPO ONLY SERVES AS A REFERENCE FOR THE PAPER
+
 [![DOI](https://zenodo.org/badge/282733467.svg)](https://zenodo.org/badge/latestdoi/282733467)
 # EvoGFuzz: Evolutionary Grammar-Based Fuzzing
 This repository provides the tool (*EvoGFuzz*) for the paper *Evolutionary Grammar-Based Fuzzing* accepted at [SSBSE'2020](http://ssbse2020.di.uniba.it/).
