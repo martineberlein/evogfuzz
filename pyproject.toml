@@ -21,7 +21,6 @@ keywords = [ "evogfuzz", "fuzzing", "evolutionary", "grammar-based", "fuzzer" ]
 requires-python = ">=3.10"
 dependencies = [
     "jupyter",
-    "isla-solver"
 ]
 
 [tool.setuptools.dynamic]
