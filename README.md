@@ -161,11 +161,12 @@ Now, the evogfuzz command should be available on the command line within the vir
 ### Development and Testing
 
 For development, we recommend using EvoGFuzz inside a virtual environment (virtualenv).
-By thing the following steps in a standard shell (bash), one can run the EvoGFuzz tests:
+At the moment, EvoGFuzz only works with Python 3.10. 
+To install the development dependencies, run the following commands:
 
 ```
-git clone https://github.com/martineberlein/evogfuzzplusplus.git
-cd evogfuzzplusplus/
+git clone https://github.com/martineberlein/evogfuzz.git
+cd evogfuzz/
 
 python3.10 -m venv venv
 source venv/bin/activate
@@ -178,5 +179,3 @@ pip install -r requirements.txt
 
 python3 -m pytest
 ```
-
-Then, you will find the built wheel (*.whl) in the dist/ directory.
