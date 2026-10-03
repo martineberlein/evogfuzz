@@ -173,10 +173,9 @@ source venv/bin/activate
 
 pip install --upgrade pip
 
-# Run tests
-pip install -e .[dev]
-pip install -r requirements.txt
+# Install package with development dependencies
+pip install -e ".[dev]"
 
-python3 -m pytest
+pytest
 ```
 

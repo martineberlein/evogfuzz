@@ -1,48 +1,63 @@
 [build-system]
-requires = ["setuptools >= 68.0.0", "wheel"]
+requires = ["setuptools>=68.0.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "evogfuzz"
 dynamic = ["version"]
+description = "Evolutionary grammar-based fuzzing and failure reproduction framework"
 authors = [
     { name = "Martin Eberlein", email = "ebermart@informatik.hu-berlin.de" }
 ]
 readme = "README.md"
+license = { text = "MIT" }
 classifiers = [
+    "Development Status :: 4 - Beta",
     "Intended Audience :: Science/Research",
     "License :: OSI Approved :: MIT License",
-    "Programming Language :: Python :: 3.10",
     "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
     "Topic :: Scientific/Engineering",
-    "Topic :: Software Development :: Testing"
+    "Topic :: Software Development :: Testing",
 ]
-keywords = [ "evogfuzz", "fuzzing", "evolutionary", "grammar-based", "fuzzer" ]
+keywords = ["evogfuzz", "fuzzing", "evolutionary", "grammar-based", "fuzzer"]
 requires-python = ">=3.10"
 dependencies = [
     "numpy",
     "matplotlib>=3.8.0",
     "pandas",
-    "jupyter",
 ]
-
-[tool.setuptools.dynamic]
-version = {attr = "evogfuzz.__version__"}
-
-# für cli
-[project.scripts]
-evogfuzz= "evogfuzz.cli:main"
-
-[project.urls]
-"Homepage" = "https://github.com/martineberlein/evogfuzz"
-"Bug Tracker" = "https://github.com/martineberlein/evogfuzz/issues"
 
 [project.optional-dependencies]
 dev = [
+    "pytest>=7.2.2",
     "twine",
-    "pytest>=7.2.2"
+    "jupyter",
 ]
 
+[project.scripts]
+evogfuzz = "evogfuzz.cli:main"
+
+[project.urls]
+"Homepage" = "https://github.com/martineberlein/evogfuzz"
+"Repository" = "https://github.com/martineberlein/evogfuzz.git"
+"Bug Tracker" = "https://github.com/martineberlein/evogfuzz/issues"
+
+[tool.setuptools.dynamic]
+version = { attr = "evogfuzz.__version__" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
 [tool.pytest.ini_options]
-pythonpath = ["."]
+minversion = "7.0"
 testpaths = ["tests"]
+pythonpath = ["src", "."]
+
+[tool.black]
+line-length = 88
+target-version = ["py310"]
