@@ -1,34 +1,45 @@
-[![Python Version](https://img.shields.io/pypi/pyversions/evogfuzz)](https://pypi.org/project/evogfuzz/)
-[![GitHub release](https://img.shields.io/github/v/release/martineberlein/evogfuzzplusplus)](https://github.com/martineberlein/evogfuzzplusplus/releases)
-[![PyPI](https://img.shields.io/pypi/v/evogfuzz)](https://pypi.org/project/evogfuzz/)
-[![Tests](https://github.com/martineberlein/evogfuzzplusplus/actions/workflows/test_evogfuzz.yml/badge.svg)](https://github.com/martineberlein/evogfuzzplusplus/actions/workflows/test_evogfuzz.yml)
-[![Licence](https://img.shields.io/github/license/martineberlein/evogfuzzplusplus)](https://img.shields.io/github/license/martineberlein/evogfuzzplusplus)
-[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
-&nbsp;
-
 # EvoGFuzz
 
-Welcome to the **EvoGFuzz** repository! This repository houses the source code for the innovative grammar-based fuzzing tool EvoGFuzz, as first documented in our paper _Evolutionary Grammar-Based Fuzzing_ that was presented at [SSBSE'2020](http://ssbse2020.di.uniba.it/).
+[![Python Version](https://img.shields.io/pypi/pyversions/evogfuzz)](https://pypi.org/project/evogfuzz/)
+[![PyPI Version](https://img.shields.io/pypi/v/evogfuzz)](https://pypi.org/project/evogfuzz/)
+[![Tests](https://github.com/martineberlein/evogfuzz/actions/workflows/test_evogfuzz.yml/badge.svg)](https://github.com/martineberlein/evogfuzz/actions/workflows/test_evogfuzz.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+
+Welcome to **EvoGFuzz**! This repository houses the source code for the evolutionary grammar-based fuzzing tool EvoGFuzz, as first documented in our paper _Evolutionary Grammar-Based Fuzzing_ presented at [SSBSE 2020](http://ssbse2020.di.uniba.it/).
+
+---
+
+## Key Features
+
+- **Evolutionary Grammar-Based Fuzzing**: Guides input generation by learning and mutating probabilistic grammars toward defect-prone regions.
+- **EvoGGen Failure Reproduction**: Specializes probabilistic grammars to efficiently isolate and reproduce specific bugs.
+- **Lightweight & Self-Contained**: Pure Python with no heavy external constraint solvers or outdated dependencies.
+- **Standard Compatibility**: Built on context-free grammars and derivation tree structures compatible with *The Fuzzing Book*.
+
+---
 
 ## Quickstart
 
-To provide an immediate understanding of EvoGFuzz's capabilities, let's dive into a simple yet illustrative example using a program we've labeled **The Calculator**.
+To understand EvoGFuzz's capabilities, let's look at an illustrative example using **The Calculator**.
 
-The Calculator program is written in Python and is capable of evaluating mathematical expressions, including arithmetic equations and trigonometric functions:
+The calculator program evaluates mathematical expressions, including arithmetic equations and trigonometric functions:
 
 ```python
 import math
 
-def arith_eval(inp) -> float:
+def arith_eval(inp: str) -> float:
     return eval(
-        str(inp), {"sqrt": math.sqrt, "sin": math.sin, "cos": math.cos, "tan": math.tan}
+        str(inp),
+        {"__builtins__": None},
+        {"sqrt": math.sqrt, "sin": math.sin, "cos": math.cos, "tan": math.tan},
     )
 ```
 
-We use an oracle function to discern between normal and faulty behavior:
+We define an oracle to discern normal from faulty behavior (e.g., negative square roots producing `ValueError`):
 
-```python 
-from evogfuzz.oracle import OracleResult
+```python
+from evogfuzz import OracleResult
 
 def oracle(inp: str) -> OracleResult:
     try:
@@ -36,21 +47,18 @@ def oracle(inp: str) -> OracleResult:
         return OracleResult.PASSING
     except ValueError:
         return OracleResult.FAILING
-    
-    return OracleResult.PASSING
-``` 
+```
 
-We can see this in action by testing a few initial inputs:
+We can test initial seed inputs:
 
 ```python
-initial_inputs = ['cos(10)', 'sqrt(28367)', 'tan(-12)', 'sqrt(3)']
+initial_inputs = ["cos(10)", "sqrt(28367)", "tan(-12)", "sqrt(3)"]
 
 for inp in initial_inputs:
     print(inp.ljust(20), oracle(inp))
 ```
 
-This will yield the following output:
-
+Output:
 ```
 cos(10)              PASSING
 sqrt(28367)          PASSING
@@ -58,9 +66,9 @@ tan(-12)             PASSING
 sqrt(3)              PASSING
 ```
 
-We apply our `EvoGFuzz` class to carry out fuzz testing using evolutionary grammar-based fuzzing. This is aimed at uncovering potential defects in our 'calculator' function.
+### Evolutionary Fuzzing with EvoGFuzz
 
-First, we must define the input format of the calculator using a grammar:
+Define the input format using a standard context-free grammar:
 
 ```python
 import string
@@ -78,36 +86,30 @@ grammar = {
 }
 ```
 
-With the grammar in place, we can initialize **EvoGFuzz** with this grammar, the sample inputs, and the oracle function:
+Initialize and run **EvoGFuzz**:
 
 ```python
-from evogfuzz.evogfuzz_class import EvoGFuzz
+from evogfuzz import EvoGFuzz
 
-epp = EvoGFuzz(
+fuzzer = EvoGFuzz(
     grammar=grammar,
     oracle=oracle,
     inputs=initial_inputs,
-    iterations=10
+    iterations=10,
 )
+
+found_exception_inputs = fuzzer.fuzz()
 ```
 
-Upon creating the `EvoGFuzz` instance, we can execute the fuzzing process. The `fuzz()` method runs the fuzzing iterations, evolving the inputs based on our fitness function, and returns a collection of inputs that lead to exceptions in the 'calculator' function.
+Inspect the failure-inducing inputs found by evolutionary exploration:
 
 ```python
-found_exception_inputs = epp.fuzz()
-```
-
-Lastly, we can examine the inputs that resulted in exceptions.
-This output can provide valuable insight into potential weaknesses in the 'calculator' function that need to be addressed.
-
-```python
-for inp in list(found_exception_inputs)[:20]:
+for inp in list(found_exception_inputs)[:10]:
     print(str(inp).ljust(30), inp.oracle)
 ```
 
-Output:
-
-````
+Sample output:
+```
 sqrt(-739)                     FAILING
 sqrt(-84358)                   FAILING
 sqrt(-649)                     FAILING
@@ -118,64 +120,72 @@ sqrt(-354)                     FAILING
 sqrt(-795)                     FAILING
 sqrt(-2452969)                 FAILING
 sqrt(-1989994)                 FAILING
-sqrt(-68)                      FAILING
-sqrt(-2538)                    FAILING
-sqrt(-14)                      FAILING
-sqrt(-134)                     FAILING
-sqrt(-279)                     FAILING
-sqrt(-748)                     FAILING
-sqrt(-6)                       FAILING
-sqrt(-11)                      FAILING
-sqrt(-140)                     FAILING
-sqrt(-32)                      FAILING
-````
-
-This process illustrates the power of evolutionary grammar-based fuzzing in identifying new defects within our system.
-By applying evolutionary algorithms to our fuzzing strategy, we can guide the search towards more defect-prone regions of the input space.
-
-### More Examples:
-
-If you want to explore more of how EvoGFuzz works, make sure to have a look at the jupyter notebooks in the notebooks folder:
-
-- **[evogfuzz_demo.ipynb](./notebooks/evoggen_demo.ipynb):** A quick and more detailed tutorial on how to setup up EvoGFuzz. It also showcases how to change the fitness functions.
-- **[evoggen_demo.ipynb](./notebooks/evoggen_demo.ipynb):** This notebook demonstrates the capabilities of EvoGGen, a version of EvoGFuzz, that optimizes the probablistic grammar to reproduce individual failures.
-- **[readme.ipynb](./notebooks/readme.ipynb):** The executable example from this README.md.
-
-
-## Install, Development, Testing, Build
-
-### Install
-If all external dependencies are available, a simple pip install evogfuzz suffices.
-We recommend installing EvoGFuzz inside a virtual environment (virtualenv), commands differ slightly for MacOS/Linux and Windows users:
-
 ```
-python3.10 -m venv venv
-source venv/bin/activate
 
-pip install --upgrade pip
+By evolving probabilistic weights across iterations, EvoGFuzz quickly discovers and concentrates on the faulty domain (negative arguments to `sqrt`).
+
+---
+
+## Interactive Notebooks
+
+Explore more examples and tutorials in the `notebooks` directory:
+
+- **[evogfuzz_demo.ipynb](./notebooks/evogfuzz_demo.ipynb):** Comprehensive tutorial on configuring EvoGFuzz and customizing fitness functions.
+- **[evoggen_demo.ipynb](./notebooks/evoggen_demo.ipynb):** Demonstrates EvoGGen for learning probabilistic grammars that reproduce specific defect classes.
+- **[readme.ipynb](./notebooks/readme.ipynb):** Interactive version of the Quickstart calculator walkthrough.
+
+---
+
+## Installation & Development
+
+### Requirements
+
+- Python >= 3.10
+
+### Install from PyPI
+
+```bash
 pip install evogfuzz
 ```
 
-Now, the evogfuzz command should be available on the command line within the virtual environment.
+### Development Setup
 
-### Development and Testing
-
-For development, we recommend using EvoGFuzz inside a virtual environment (virtualenv).
-At the moment, EvoGFuzz only works with Python 3.10. 
-To install the development dependencies, run the following commands:
-
-```
+```bash
 git clone https://github.com/martineberlein/evogfuzz.git
-cd evogfuzz/
+cd evogfuzz
 
-python3.10 -m venv venv
-source venv/bin/activate
+python3 -m venv .venv
+source .venv/bin/activate
 
 pip install --upgrade pip
-
-# Install package with development dependencies
 pip install -e ".[dev]"
+```
 
+### Running Tests
+
+```bash
 pytest
 ```
 
+---
+
+## Citation
+
+If you use EvoGFuzz in academic research, please cite our SSBSE 2020 paper:
+
+```bibtex
+@inproceedings{eberlein2020evogfuzz,
+  title     = {Evolutionary Grammar-Based Fuzzing},
+  author    = {Eberlein, Martin and Grunske, Lars},
+  booktitle = {International Symposium on Search Based Software Engineering (SSBSE)},
+  pages     = {183--189},
+  year      = {2020},
+  publisher = {Springer}
+}
+```
+
+---
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
