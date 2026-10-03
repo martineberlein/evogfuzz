@@ -28,7 +28,7 @@ def arith_eval(inp) -> float:
 We use an oracle function to discern between normal and faulty behavior:
 
 ```python 
-from debugging_framework.input.oracle import OracleResult
+from evogfuzz.oracle import OracleResult
 
 def oracle(inp: str) -> OracleResult:
     try:

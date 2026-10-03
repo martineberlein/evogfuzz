@@ -1,6 +1,6 @@
 import unittest
 
-from debugging_benchmark.calculator.calculator import (
+from tests.calculator import (
     calculator_grammar as grammar,
     calculator_oracle as oracle,
     calculator_initial_inputs as initial_inputs,

@@ -1,8 +1,8 @@
 import unittest
 
-from debugging_framework.types import Grammar
-from isla.parser import EarleyParser
-from isla.derivation_tree import DerivationTree
+from evogfuzz.types import Grammar
+from evogfuzz.parser import EarleyParser
+from evogfuzz.derivation_tree import DerivationTree
 
 from evogfuzz.grammar_transformation import get_transformed_grammar
 from evogfuzz.input import Input

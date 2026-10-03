@@ -1,14 +1,12 @@
 import unittest
 
-from isla.parser import EarleyParser
-from isla.derivation_tree import DerivationTree
+from evogfuzz.parser import EarleyParser
+from evogfuzz.derivation_tree import DerivationTree
 
-from debugging_framework.fuzzingbook.grammar import is_valid_grammar
-from debugging_framework.fuzzingbook.helper import tree_to_string
-from debugging_framework.types import Grammar
-from debugging_benchmark.calculator.calculator import (
+from evogfuzz.grammar import is_valid_grammar, tree_to_string
+from evogfuzz.types import Grammar
+from tests.calculator import (
     calculator_grammar as grammar,
-    calculator_initial_inputs as initial_inputs,
 )
 
 
@@ -91,7 +89,7 @@ class TestProbabilisticLearner(unittest.TestCase):
         e_parser = EarleyParser(grammar=grammar)
 
         test_inputs = set()
-        for inp_ in initial_inputs:
+        for inp_ in ["sqrt(-900)", "cos(12)"]:
             test_inputs.add(
                 Input(
                     DerivationTree.from_parse_tree(

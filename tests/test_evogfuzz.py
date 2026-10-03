@@ -1,12 +1,12 @@
 import sys
 import unittest
 
-from debugging_benchmark.calculator.calculator import (
+from tests.calculator import (
     calculator_grammar as grammar,
     calculator_initial_inputs as initial_inputs,
     calculator_oracle as oracle,
 )
-from debugging_framework.input.oracle import OracleResult
+from evogfuzz.oracle import OracleResult
 
 from evogfuzz.fitness_functions import fitness_function_failure as fitness_function
 from evogfuzz.evogfuzz_class import EvoGFuzz

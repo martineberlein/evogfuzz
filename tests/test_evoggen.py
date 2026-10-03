@@ -3,11 +3,10 @@ import string
 from itertools import product
 from typing import Optional, Tuple
 
-from debugging_framework.fuzzingbook.grammar import is_valid_grammar
-from debugging_framework.types import Grammar
-from debugging_framework.fuzzingbook.helper import tree_to_string
-from debugging_framework.input.oracle import OracleResult
-from isla.parser import EarleyParser
+from evogfuzz.grammar import is_valid_grammar, tree_to_string
+from evogfuzz.types import Grammar
+from evogfuzz.oracle import OracleResult
+from evogfuzz.parser import EarleyParser
 
 from evogfuzz.evogfuzz_class import EvoGGen
 from evogfuzz.input import Input
