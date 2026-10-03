@@ -10,15 +10,6 @@ Welcome to **EvoGFuzz**! This repository houses the source code for the evolutio
 
 ---
 
-## Key Features
-
-- **Evolutionary Grammar-Based Fuzzing**: Guides input generation by learning and mutating probabilistic grammars toward defect-prone regions.
-- **EvoGGen Failure Reproduction**: Specializes probabilistic grammars to efficiently isolate and reproduce specific bugs.
-- **Lightweight & Self-Contained**: Pure Python with no heavy external constraint solvers or outdated dependencies.
-- **Standard Compatibility**: Built on context-free grammars and derivation tree structures compatible with *The Fuzzing Book*.
-
----
-
 ## Quickstart
 
 To understand EvoGFuzz's capabilities, let's look at an illustrative example using **The Calculator**.
