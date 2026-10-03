@@ -5,13 +5,13 @@ from evogfuzz.evogfuzz_class import EvoGFuzz, EvoGGen
 from evogfuzz.input import Input
 from evogfuzz.oracle import OracleResult
 
-__version__ = "0.8.0"
+__version__ = "0.9.0"
 
 __all__ = [
+    "DerivationTree",
     "EvoGFuzz",
     "EvoGGen",
-    "OracleResult",
     "Input",
-    "DerivationTree",
+    "OracleResult",
     "__version__",
 ]
